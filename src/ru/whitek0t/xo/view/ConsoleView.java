@@ -74,6 +74,9 @@ public class ConsoleView {
     }
 
     String generateLine(final Field field, final int y) {
+        if ((y > field.getSize() - 1) | y < 0 | field == null) {
+            throw new RuntimeException();
+        }
         String[] figureArray = new String[field.getSize()];
         for (int x = 0; x < field.getSize(); x++) {
             final Figure figure;
