@@ -40,4 +40,18 @@ public class ConsoleViewTest {
             assertTrue(true);
         }
     }
+    @Test
+    public void testGenerateSeparatorTrue() throws Exception {
+        final ConsoleView consoleView = new ConsoleView();
+        assertEquals("~~~",consoleView.generateSeparator(3, '~'));
+    }
+    @Test
+    public void testGenerateSeparatorBadN() throws Exception {
+        final ConsoleView consoleView = new ConsoleView();
+        try {
+            consoleView.generateSeparator(0, ' ');
+        } catch (RuntimeException re) {
+            assertTrue(true);
+        }
+    }
 }
