@@ -1,5 +1,6 @@
 package ru.whitek0t.xo.view;
 
+import ru.whitek0t.xo.common.ConsoleCoordinateReader;
 import ru.whitek0t.xo.controller.CurrentMoveController;
 import ru.whitek0t.xo.controller.MoveController;
 import ru.whitek0t.xo.controller.WinnerController;
@@ -10,14 +11,12 @@ import ru.whitek0t.xo.model.exceptions.AlreadyOccupiedException;
 import ru.whitek0t.xo.model.exceptions.InvalidPointException;
 
 import java.awt.*;
-import java.util.InputMismatchException;
-import java.util.Scanner;
 
 public class ConsoleView {
 
     final String templateLine = "%2s | %s | %s";
 
-    final Scanner in = new Scanner(System.in);
+    private final ConsoleCoordinateReader consoleCoordinateReader = new ConsoleCoordinateReader();
 
     private final CurrentMoveController currentMoveController = new CurrentMoveController();
 
@@ -58,21 +57,6 @@ public class ConsoleView {
         return true;
     }
 
-    private Point askPoit() {
-        return new Point(askCoordinate("X") - 1, askCoordinate("Y") - 1);
-    }
-
-    private int askCoordinate(final String coordinateName) {
-        System.out.printf("Please input %s:", coordinateName);
-        try {
-            return in.nextInt();
-        } catch (final InputMismatchException e) {
-            System.out.println("olololo!!!");
-            in.next();
-            return askCoordinate(coordinateName);
-        }
-    }
-
     String generateLine(final Field field, final int y) {
         if ((y > field.getSize() - 1) | y < 0 | field == null) {
             throw new RuntimeException();
@@ -100,5 +84,10 @@ public class ConsoleView {
             result.append(ch);
         }
         return result.toString();
+    }
+
+    private Point askPoit() {
+        return new Point(consoleCoordinateReader.nextInt("X") - 1,
+                consoleCoordinateReader.nextInt("Y") - 1);
     }
 }
