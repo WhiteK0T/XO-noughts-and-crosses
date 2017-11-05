@@ -31,7 +31,7 @@ public class ConsoleView {
         final Field field = game.getField();
         for (int y = 0; y < field.getSize(); y++) {
             if (y != 0 )
-                printSeparator();
+                System.out.println(generateSeparator(11, '~'));
             System.out.println(generateLine(field, y));
         }
     }
@@ -91,8 +91,14 @@ public class ConsoleView {
         return String.format(templateLine, figureArray);
     }
 
-    private void printSeparator() {
-        System.out.println("~~~~~~~~~~~");
+    String generateSeparator(int n, char ch) {
+        if (n < 1) {
+            throw new RuntimeException();
+        }
+        StringBuilder result = new StringBuilder(n + 5);
+        for (int i = 0; i < n; i++) {
+            result.append(ch);
+        }
+        return result.toString();
     }
-
 }
