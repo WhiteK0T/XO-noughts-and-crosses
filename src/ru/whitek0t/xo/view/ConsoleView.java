@@ -1,6 +1,7 @@
 package ru.whitek0t.xo.view;
 
 import ru.whitek0t.xo.common.ConsoleCoordinateReader;
+import ru.whitek0t.xo.common.IXOProperty;
 import ru.whitek0t.xo.controller.CurrentMoveController;
 import ru.whitek0t.xo.controller.MoveController;
 import ru.whitek0t.xo.controller.WinnerController;
@@ -14,7 +15,9 @@ import java.awt.*;
 
 public class ConsoleView {
 
-    final String templateLine = "%2s | %s | %s";
+    final String templateLine = IXOProperty.getDefaultProperties().getTemplateLine();
+
+    private static final Character SEPARATOR = IXOProperty.getDefaultProperties().getSeparatorChar();
 
     private final ConsoleCoordinateReader consoleCoordinateReader = new ConsoleCoordinateReader();
 
@@ -30,7 +33,7 @@ public class ConsoleView {
         final Field field = game.getField();
         for (int y = 0; y < field.getSize(); y++) {
             if (y != 0 )
-                System.out.println(generateSeparator(11, '~'));
+                System.out.println(generateSeparator(11, SEPARATOR));
             System.out.println(generateLine(field, y));
         }
     }
