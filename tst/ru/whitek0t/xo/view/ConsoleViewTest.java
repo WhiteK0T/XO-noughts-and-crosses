@@ -12,7 +12,7 @@ public class ConsoleViewTest {
     @Test
     public void testGenerateLineFieldAndY() throws Exception {
         final ConsoleView consoleView = new ConsoleView();
-        final Field field = new Field(3);
+        final Field field = new Field(3, 4, 3);
         field.setFigure(new Point(0, 0), Figure.O);
         field.setFigure(new Point(1, 0), Figure.X);
         field.setFigure(new Point(2, 0), Figure.O);
@@ -30,7 +30,7 @@ public class ConsoleViewTest {
     @Test
     public void testGenerateLineFieldAndInvalidY() throws Exception {
         final ConsoleView consoleView = new ConsoleView();
-        final Field field = new Field(3);
+        final Field field = new Field(3, 4, 3);
         field.setFigure(new Point(0, 0), Figure.O);
         field.setFigure(new Point(1, 0), Figure.X);
         field.setFigure(new Point(2, 0), Figure.O);
