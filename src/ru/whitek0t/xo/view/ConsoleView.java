@@ -31,7 +31,7 @@ public class ConsoleView {
     public void show(final Game game) {
         System.out.printf("Game name: %s\n", game.getName());
         final Field field = game.getField();
-        for (int y = 0; y < field.getSize(); y++) {
+        for (int y = 0; y < field.getSizeY(); y++) {
             if (y != 0 )
                 System.out.println(generateSeparator(11, SEPARATOR));
             System.out.println(generateLine(field, y));
@@ -61,12 +61,12 @@ public class ConsoleView {
     }
 
     String generateLine(final Field field, final int y) {
-        if ((y > field.getSize() - 1) | y < 0 | field == null) {
+        if ((y > field.getSizeY() - 1) || y < 0 || field == null) {
             throw new RuntimeException();
         }
-        String[] figureArray = new String[field.getSize()];
-        for (int x = 0; x < field.getSize(); x++) {
-            final Figure figure;
+        String[] figureArray = new String[field.getSizeX()];
+        Figure figure;
+        for (int x = 0; x < field.getSizeX(); x++) {
             try {
                 figure = field.getFigure(new Point(x, y));
                 figureArray[x] = figure != null ? String.valueOf(figure) : " ";
