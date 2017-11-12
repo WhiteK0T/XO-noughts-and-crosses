@@ -8,17 +8,31 @@ public class Field {
 
     private static final int MIN_COORDINATE = 0;
 
-    private final int fieldSize;
+    private final int numWinnerFigure;
+
+    private final int fieldSizeX;
+
+    private final int fieldSizeY;
 
     private final Figure[][] field;
 
-    public Field(int fieldSize) {
-        this.fieldSize = fieldSize;
-        this.field = new Figure[fieldSize][fieldSize];
+    public Field(int fieldSizeX, int fieldSizeY, int numWinnerFigure) {
+        this.fieldSizeX = fieldSizeX < 3 ? 3 : fieldSizeX;
+        this.fieldSizeY = fieldSizeY < 3 ? 3 : fieldSizeY;
+        this.numWinnerFigure = numWinnerFigure < 3 ? 3 : numWinnerFigure ;
+        this.field = new Figure[this.fieldSizeX][this.fieldSizeY];
     }
 
-    public int getSize() {
-        return fieldSize;
+    public int getSizeX() {
+        return fieldSizeX;
+    }
+
+    public int getSizeY() {
+        return fieldSizeY;
+    }
+
+    public int getNumWinnerFigure() {
+        return numWinnerFigure;
     }
 
     public Figure getFigure(final Point point) throws InvalidPointException {
@@ -36,7 +50,7 @@ public class Field {
     }
 
     private boolean checkPoint(final Point point) {
-        return cheakCoordinate(point.x, field.length) && cheakCoordinate(point.y, field[point.x].length);
+        return cheakCoordinate(point.x, fieldSizeX) && cheakCoordinate(point.y, fieldSizeY);
     }
 
     private boolean cheakCoordinate(final int coordinate, final int maxCoordinate) {
