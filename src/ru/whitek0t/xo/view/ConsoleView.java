@@ -65,10 +65,9 @@ public class ConsoleView {
             throw new RuntimeException();
         }
         String[] figureArray = new String[field.getSizeX()];
-        Figure figure;
         for (int x = 0; x < field.getSizeX(); x++) {
             try {
-                figure = field.getFigure(new Point(x, y));
+                final Figure figure = field.getFigure(new Point(x, y));
                 figureArray[x] = figure != null ? String.valueOf(figure) : " ";
             } catch (final InvalidPointException e) {
                 e.printStackTrace();
